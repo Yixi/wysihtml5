@@ -91,11 +91,17 @@
     <a data-wysihtml5-command="insertImage">insert image</a> |
     <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a> |
     <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a> |
+    <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="BLOCKQUOTE">Block</a> |
+    <a data-wysihtml5-command="fontName" data-wysihtml5-command-value="s">font</a>
+    <a data-wysihtml5-command="removeFormat">Clean</a>
     <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
+    <a data-wysihtml5-command="Indent">Indent</a> |
+    <a data-wysihtml5-command="Outdent">Outdent</a> |
     <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a> |
     <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a> |
     <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a> |
     <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a> |
+    <a data-wysihtml5-command="justifyRight">Right</a> |
     <a data-wysihtml5-command="undo">undo</a> |
     <a data-wysihtml5-command="redo">redo</a> |
     <a data-wysihtml5-command="insertSpeech">speech</a>
@@ -106,13 +112,14 @@
         Link:
         <input data-wysihtml5-dialog-field="href" value="http://">
       </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+      <a data-wysihtml5-dialog-action="save" >OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
     </div>
     
     <div data-wysihtml5-dialog="insertImage" style="display: none;">
       <label>
         Image:
-        <input data-wysihtml5-dialog-field="src" value="http://">
+        <input data-wysihtml5-dialog-field="src" value="http://" id="imagesrc">
+        <input value="https://">
       </label>
       <label>
         Align:
@@ -122,7 +129,8 @@
           <option value="wysiwyg-float-right">right</option>
         </select>
       </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        <a id="uploadImage">Upload</a>
+        <a data-wysihtml5-dialog-action="save" id="insertImage">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
     </div>
     
   </div>
@@ -171,4 +179,11 @@
     .on("redo:composer", function() {
       log.innerHTML += "<div>redo:composer</div>";
     });
+
+    document.getElementById('uploadImage').addEventListener('click',function(e){
+            var img = 'http://www.webresourcesdepot.com/wp-content/uploads/akihabara.jpg';
+        document.getElementById('imagesrc').value = img;
+        document.getElementById('insertImage').click();
+    },false);
+
 </script>
