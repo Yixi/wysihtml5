@@ -136,6 +136,17 @@
   <br><input type="reset" value="Reset form!">
 </form>
 
+<div>
+    Insert Image
+    <button onclick="im(1)">1</button>
+    <button onclick="im(2)">2</button>
+    <button onclick="im(3)">3</button>
+    <button onclick="im(4)">4</button>
+    <button onclick="im(5)">5</button>
+    <button onclick="im(6)">6</button>
+    <button onclick="im(7)">7</button>
+</div>
+
 <h2>Events:</h2>
 <div id="log"></div>
 
@@ -181,10 +192,33 @@
       log.innerHTML += "<div>redo:composer</div>";
     });
 
-//    document.getElementById('uploadImage').addEventListener('click',function(e){
-//            var img = 'http://www.webresourcesdepot.com/wp-content/uploads/akihabara.jpg';
-//        document.getElementById('imagesrc').value = img;
-//        document.getElementById('insertImage').click();
-//    },false);
+    function im(id){
+        var img = '';
+        switch(id){
+            case 1:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Book.png';
+                break;
+            case 2:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Calendar.png';
+                break;
+            case 3:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Chat.png';
+                break;
+            case 4:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Clipboard.png';
+                break;
+            case 5:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Compas.png';
+                break;
+            case 6:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Infinity-Loop.png';
+                break;
+            case 7:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Retina-Ready.png';
+                break;
+        }
+
+        editor.composer.commands.exec('insertImage',{src:img});
+    }
 
 </script>

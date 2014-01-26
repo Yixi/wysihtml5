@@ -39,10 +39,18 @@
       }
 
       image = doc.createElement(NODE_NAME);
-      
+
+        image.onload = function(){
+            wysihtml5.dom.removeClass(image,'img-loading');
+        }
+
       for (var i in value) {
         image.setAttribute(i === "className" ? "class" : i, value[i]);
       }
+
+        wysihtml5.dom.addClass(image,'img-loading');
+
+
 
       composer.selection.insertNode(image);
       if (wysihtml5.browser.hasProblemsSettingCaretAfterImg()) {
