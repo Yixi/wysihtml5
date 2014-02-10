@@ -9421,7 +9421,6 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
           action,
           command;
       // every millisecond counts... this is executed quite often
-
         for (i in commandMapping) {
         command = commandMapping[i];
         if (this.commandsDisabled) {
@@ -9467,6 +9466,7 @@ wysihtml5.views.Textarea = wysihtml5.views.View.extend(
             }
           }
         } else {
+          this.editor.fire('command:removeState',command);
           dom.removeClass(command.link, CLASS_NAME_COMMAND_ACTIVE);
           if (command.group) {
             dom.removeClass(command.group, CLASS_NAME_COMMAND_ACTIVE);

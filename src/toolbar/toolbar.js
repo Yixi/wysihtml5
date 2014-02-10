@@ -216,7 +216,6 @@
           action,
           command;
       // every millisecond counts... this is executed quite often
-
         for (i in commandMapping) {
         command = commandMapping[i];
         if (this.commandsDisabled) {
@@ -262,6 +261,7 @@
             }
           }
         } else {
+          this.editor.fire('command:removeState',command);
           dom.removeClass(command.link, CLASS_NAME_COMMAND_ACTIVE);
           if (command.group) {
             dom.removeClass(command.group, CLASS_NAME_COMMAND_ACTIVE);

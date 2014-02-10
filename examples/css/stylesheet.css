@@ -131,3 +131,22 @@
 .wysiwyg-clear-left {
   clear: left;
 }
+.wysiwyg-font-name-comicsans{
+    font-family: 'comic sans ms', sans-serif;
+}
+.wysiwyg-font-name-narrow{
+    font-family: 'arial narrow', sans-serif;
+}
+.wysiwyg-font-name-tahoma{
+    font-family: tahoma, sans-serif;;
+}
+.wysiwyg-image{
+    max-height: 300px;
+    max-width: 400px;
+    min-width: 20px;
+    min-height: 20px;
+
+}
+.wysiwyg-image.img-loading{
+    background: url(/images/loading.gif) no-repeat;
+}

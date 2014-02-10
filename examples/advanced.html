@@ -164,6 +164,12 @@
   var log = document.getElementById("log");
   
   editor
+          .on("command:compass",function(e){
+              console.log('add',e);
+          })
+          .on('command:removeState',function(e){
+              console.log('remove',e);
+          })
     .on("load", function() {
       log.innerHTML += "<div>load</div>";
     })
@@ -185,9 +191,7 @@
     .on("undo:composer", function() {
       log.innerHTML += "<div>undo:composer</div>";
     })
-          .on("command:compass",function(e){
-              console.log(e);
-          })
+
     .on("redo:composer", function() {
       log.innerHTML += "<div>redo:composer</div>";
     });
