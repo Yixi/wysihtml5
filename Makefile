@@ -1,7 +1,7 @@
 VERSION = $(shell cat version.txt)
 
-JS_OUTPUT = "dist/wysihtml5x-${VERSION}-toolbar.js"
-JS_OUTPUT_WOTOOLS = "dist/wysihtml5x-${VERSION}.js"
+JS_OUTPUT = "dist/wysihtml5-${VERSION}.js"
+JS_OUTPUT_WOTOOLS = "dist/wysihtml5-${VERSION}.js"
 
 OPEN = $(shell which xdg-open || which gnome-open || which open)
 
@@ -55,7 +55,8 @@ JS_FILES = src/wysihtml5.js \
   src/commands/createLink.js \
   src/commands/removeLink.js \
   src/commands/fontSize.js \
-  src/commands/fontSizeStyle.js \
+  src/commands/fontName.js \
+  src/commands/removeFormat.js \
   src/commands/foreColor.js \
   src/commands/foreColorStyle.js \
   src/commands/bgColorStyle.js \

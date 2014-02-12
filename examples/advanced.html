@@ -92,11 +92,17 @@
     <a data-wysihtml5-command="insertImage">insert image</a> |
     <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1">h1</a> |
     <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2">h2</a> |
+    <a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="BLOCKQUOTE">Block</a> |
+    <a data-wysihtml5-command="fontName" data-wysihtml5-command-value="s">font</a>
+    <a data-wysihtml5-command="removeFormat">Clean</a>
     <a data-wysihtml5-command="insertUnorderedList">insertUnorderedList</a> |
+    <a data-wysihtml5-command="Indent">Indent</a> |
+    <a data-wysihtml5-command="Outdent">Outdent</a> |
     <a data-wysihtml5-command="insertOrderedList">insertOrderedList</a> |
-    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red">red</a> |
-    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green">green</a> |
-    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue">blue</a> |
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red" data-wysihtml5-command-gorup="color">red</a> |
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="green" data-wysihtml5-command-gorup="color">green</a> |
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue" data-wysihtml5-command-gorup="color">blue</a> |
+    <a data-wysihtml5-command="justifyRight">Right</a> |
     <a data-wysihtml5-command="undo">undo</a> |
     <a data-wysihtml5-command="redo">redo</a> |
     <a data-wysihtml5-command="insertSpeech">speech</a>
@@ -107,7 +113,7 @@
         Link:
         <input data-wysihtml5-dialog-field="href" value="http://">
       </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+      <a data-wysihtml5-dialog-action="save" >OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
     </div>
     
     <div data-wysihtml5-dialog="insertImage" style="display: none;">
@@ -123,7 +129,7 @@
           <option value="wysiwyg-float-right">right</option>
         </select>
       </label>
-      <a data-wysihtml5-dialog-action="save">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
+        <a data-wysihtml5-dialog-action="save" id="insertImage">OK</a>&nbsp;<a data-wysihtml5-dialog-action="cancel">Cancel</a>
     </div>
     
   </div>
@@ -180,6 +186,17 @@
   <br><input type="reset" value="Reset form!">
 </form>
 
+<div>
+    Insert Image
+    <button onclick="im(1)">1</button>
+    <button onclick="im(2)">2</button>
+    <button onclick="im(3)">3</button>
+    <button onclick="im(4)">4</button>
+    <button onclick="im(5)">5</button>
+    <button onclick="im(6)">6</button>
+    <button onclick="im(7)">7</button>
+</div>
+
 <h2>Events:</h2>
 <div id="log"></div>
 
@@ -188,7 +205,7 @@
 <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
 <script src="../parser_rules/advanced_unwrap.js"></script>
-<script src="../dist/wysihtml5x-0.4.0-beta1.js"></script>
+<script src="../dist/wysihtml5-0.4.2.js"></script>
 <script>
 var editors = [];
  
@@ -213,6 +230,12 @@ var editors = [];
   var log = document.getElementById("log");
   
   editor
+          .on("command:compass",function(e){
+              console.log('add',e);
+          })
+          .on('command:removeState',function(e){
+              console.log('remove',e);
+          })
     .on("load", function() {
       log.innerHTML += "<div>load</div>";
     })
@@ -234,7 +257,38 @@ var editors = [];
     .on("undo:composer", function() {
       log.innerHTML += "<div>undo:composer</div>";
     })
+
     .on("redo:composer", function() {
       log.innerHTML += "<div>redo:composer</div>";
-    });*/
+    });
+
+    function im(id){
+        var img = '';
+        switch(id){
+            case 1:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Book.png';
+                break;
+            case 2:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Calendar.png';
+                break;
+            case 3:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Chat.png';
+                break;
+            case 4:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Clipboard.png';
+                break;
+            case 5:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Compas.png';
+                break;
+            case 6:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Infinity-Loop.png';
+                break;
+            case 7:
+                img = 'http://yi.xi/Ysisi/todo/app/bower_components/flat-ui-official/images/icons/png/Retina-Ready.png';
+                break;
+        }
+
+        editor.composer.commands.exec('insertImage',{src:img});
+    }
+
 </script>

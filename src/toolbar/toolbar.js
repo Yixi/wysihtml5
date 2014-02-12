@@ -231,7 +231,7 @@
           action,
           command;
       // every millisecond counts... this is executed quite often
-      for (i in commandMapping) {
+        for (i in commandMapping) {
         command = commandMapping[i];
         if (this.commandsDisabled) {
           state = false;
@@ -256,6 +256,7 @@
         command.state = state;
         if (state) {
           dom.addClass(command.link, CLASS_NAME_COMMAND_ACTIVE);
+          this.editor.fire('command:compass',command);
           if (command.group) {
             dom.addClass(command.group, CLASS_NAME_COMMAND_ACTIVE);
           }
@@ -276,6 +277,7 @@
             }
           }
         } else {
+          this.editor.fire('command:removeState',command);
           dom.removeClass(command.link, CLASS_NAME_COMMAND_ACTIVE);
           if (command.group) {
             dom.removeClass(command.group, CLASS_NAME_COMMAND_ACTIVE);

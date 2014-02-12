@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="css/stylesheet.css" type="text/css" media="screen" title="no title" charset="utf-8">
+    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale = 1.0, maximum-scale=1.0, minimum-scale=1.0,user-scalable = no" />
+    <style>
+        html,body{
+            padding: 0;
+            margin: 0;
+            outline: 0;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        #noteContent{
+            height: 100%;
+            width: 100%;
+            border: 0;
+        }
+        #toolbar{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<div id="noteContent"></div>
+<div id="toolbar">
+    <a data-wysihtml5-command="fontName" data-wysihtml5-command-value="narrow"></a>
+    <a data-wysihtml5-command="fontName" data-wysihtml5-command-value="tahoma"></a>
+    <a data-wysihtml5-command="fontName" data-wysihtml5-command-value="comicsans"></a>
+    <a data-wysihtml5-command="fontSize" data-wysihtml5-command-value="smaller"></a>
+    <a data-wysihtml5-command="fontSize" data-wysihtml5-command-value="medium"></a>
+    <a data-wysihtml5-command="fontSize" data-wysihtml5-command-value="large"></a>
+    <a data-wysihtml5-command="fontSize" data-wysihtml5-command-value="x-large"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="red"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="blue"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="purple"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="fuchsia"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="lime"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="olive"></a>
+    <a data-wysihtml5-command="foreColor" data-wysihtml5-command-value="yellow"></a>
+    <a data-wysihtml5-command="bold" ></a>
+    <a data-wysihtml5-command="italic"></a>
+    <a data-wysihtml5-command="underline"></a>
+    <a data-wysihtml5-command="insertOrderedList"></a>
+    <a data-wysihtml5-command="insertUnorderedList"></a>
+    <a data-wysihtml5-command="Indent"></a>
+    <a data-wysihtml5-command="Outdent"></a>
+    <a data-c="insertImage"></a>
+    <a data-wysihtml5-command="createLink"></a>
+
+</div>
+
+<script src="../parser_rules/richEditorRule.js"></script>
+<script src="../dist/wysihtml5-0.4.2.js"></script>
+<script>
+var editor = new wysihtml5.Editor('noteContent',{
+    toolbar:        "toolbar",
+    stylesheets:    "css/stylesheet.css",
+    parserRules:    wysihtml5ParserRules,
+    contentEditableMode: true
+});
+
+editor.focus();
+
+var command = {
+    bold:function(){
+        editor.composer.commands.exec('bold');
+    },
+    /**
+     * @param value {String}
+     */
+    fontName:function(value){
+        editor.composer.commands.exec('fontName',value);
+    },
+    /**
+     * @param value {String}  smaller | medium | large | x-large
+     */
+    fontSize:function(value){
+        editor.composer.commands.exec('fontSize',value);
+    },
+    italic:function(){
+        editor.composer.commands.exec('italic');
+    },
+    underline:function(){
+        editor.composer.commands.exec('underline');
+    },
+    /**
+     * @param value {String} blue | red |..
+     */
+    foreColor:function(value){
+        editor.composer.commands.exec('foreColor',value);
+    },
+    insertOrderedList:function(){
+        editor.composer.commands.exec("insertOrderedList");
+    },
+    insertUnorderedList:function(){
+        editor.composer.commands.exec("insertUnorderedList");
+    },
+    /**
+     * @param value {Object}
+     * @example {src:"xxxx.png",alt:"this is a image"}
+     */
+    insertImage:function(value){
+        editor.composer.commands.exec("insertImage",value);
+    },
+    /**
+     * @param value {Object}
+     * @example { href: "http://google.com", target: "_blank", rel: "nofollow", text: "Google" }
+     */
+    createLink:function(value){
+        editor.composer.commands.exec("createLink",value);
+    }
+};
+
+
+
+editor.on("command:compass",function(e){
+    var command = e.name;
+    var value = e.value;
+    console.log('add state',command,value);
+    //TODO: you need use the {command} and {value} to add the toolbar button state.
+}).on("command:removeState",function(e){
+    var command = e.name;
+    var value = e.value;
+    console.log('remove state',command,value);
+    //TODO: you need use the {command} and {value} to remove the toolbar button state.
+})
+
+
+
+
+</script>
+</body>
+</html>
