@@ -111,6 +111,20 @@ var command = {
      */
     createLink:function(value){
         editor.composer.commands.exec("createLink",value);
+    },
+    indent:function(){
+        editor.composer.commands.exec('indent');
+    },
+    outdent:function(){
+        editor.composer.commands.exec('outdent');
+    },
+
+
+    getValue:function(){
+        return editor.getValue();
+    },
+    setValue:function(value){
+        editor.setValue(value);
     }
 };
 
