@@ -103,6 +103,7 @@ var command = {
      * @example {src:"xxxx.png",alt:"this is a image"}
      */
     insertImage:function(value){
+        if(typeof value == 'string') value = JSON.parse(value);
         editor.composer.commands.exec("insertImage",value);
     },
     /**
@@ -110,6 +111,7 @@ var command = {
      * @example { href: "http://google.com", target: "_blank", rel: "nofollow", text: "Google" }
      */
     createLink:function(value){
+        if(typeof value == 'string') value = JSON.parse(value);
         editor.composer.commands.exec("createLink",value);
     },
     indent:function(){
